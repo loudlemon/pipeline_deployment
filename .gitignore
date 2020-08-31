@@ -105,8 +105,3 @@ venv.bak/
 
 # pycharm
 .idea/
-
-# datafiles
-packages/log_reg/log_reg/datasets/*.csv
-packages/log_reg/log_reg/datasets/*.zip
-packages/log_reg/log_reg/datasets/*.txt
