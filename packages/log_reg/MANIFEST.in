@@ -1,0 +1,16 @@
+include *.txt
+include *.md
+include *.cfg
+include *.pkl
+recursive-include ./log_reg/*
+
+include log_reg/datasets/train_data.csv
+include log_reg/datasets/test_data.csv
+include log_reg/trained_models/*.pkl
+include log_reg/VERSION
+
+include ./requirements.txt
+exclude *.log
+
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]

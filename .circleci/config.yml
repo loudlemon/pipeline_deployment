@@ -1,0 +1,115 @@
+version: 2
+
+defaults: &defaults
+  docker:
+    - image: circleci/python:3.8.5
+  working_directory: ~/project
+
+prepare_venv: &prepare_venv
+  run:
+    name: Create venv
+    command: |
+      python3 -m venv venv
+      source venv/bin/activate
+      pip install --upgrade pip
+
+
+jobs:
+  test_chd_pipeline:
+    <<: *defaults
+    steps:
+       - checkout
+       - *prepare_venv
+       - run:
+           name: Install requirements
+           command: |
+             . venv/bin/activate
+             pip install -r  packages/log_reg/requirements.txt
+       - run:
+           name: Train model
+           command: |
+             . venv/bin/activate
+             PYTHONPATH=./packages/log_reg python3 packages/log_reg/log_reg/train_pipeline.py
+       - run:
+           name: Run tests
+           command: |
+             . venv/bin/activate
+             py.test -vv packages/log_reg/tests
+
+  test_ml_api:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - py-deps-{{ checksum "packages/ml_api/requirements.txt"  }}
+      - run:
+          name: Runnig tests
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install --upgrade pip
+            pip install -r packages/ml_api/requirements.txt
+            py.test -vv packages/ml_api/tests -m "not differential"
+      - save_cache:
+          key: py_deps-{{ checksum "packages/ml_api/requirements.txt" }}
+          paths:
+            - "/venv"
+
+  train_and_upload_logistic_regression:
+      <<: *defaults
+      steps:
+        - checkout
+        - *prepare_venv
+        - run:
+             name: Install requirements
+             command: |
+               . venv/bin/activate
+               pip install -r packages/log_reg/requirements.txt
+        - run:
+             name: Train model
+             command: |
+                . venv/bin/activate
+                PYTHONPATH=./packages/log_reg python3 packages/log_reg/log_reg/train_pipeline.py
+        - run:
+            name: Publish model to Gemfury
+            command: |
+              . venv/bin/activate
+              chmod +x ./scripts/publish_model.sh
+              ./scripts/publish_model.sh ./packages/log_reg/
+
+  #differential_tests:
+    #<<: *defaults
+    #steps:
+ #     - checkout
+ #     - *prepare_venv
+ #     - run:
+ #         name: Capturing previous model predictions
+ #         command: |
+ #           . venv/bin/activate
+ #           pip install -r packages/ml_api/diff_test_requirements.txt
+ #           PYTHONPATH=./packages/ml_api python3 packages/ml_api/tests/capture_model_predictions.py
+ #     - run:
+ #         name: Runnig differential tests
+ #         command: |
+ #           . venv/bin/activate
+  #          pip install -r packages/ml_api/requirements.txt
+  #          py.test -vv packages/ml_api/tests -m differential
+
+
+workflows:
+  version: 2
+  test-all:
+    jobs:
+      - test_ml_api
+      - test_chd_pipeline
+    #  - differential_tests
+      - train_and_upload_logistic_regression:
+          requires:
+            - test_chd_pipeline
+            - test_ml_api
+           # - differential_tests
+          #filters:
+            #branches:
+             # only:
+               # - master
