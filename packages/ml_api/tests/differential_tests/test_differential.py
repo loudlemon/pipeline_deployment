@@ -17,13 +17,12 @@ def test_model_prediction_differential(
     """
     # Given
     previous_model_df = pd.read_csv(f'{config.PACKAGE_ROOT}/{saved_file}')
-    print(previous_model_df.head())
-    previous_model_preds = previous_model_df['predictions'].values[0]
+    previous_model_preds = previous_model_df['predictions']
     test_data = load_data(file_name=model_config.TEST_DATA)
 
     # When
     current = make_prediction(input_data=test_data)
-    current_model_preds = current.get('predictions')[0]
+    current_model_preds = current.get('predictions')
     print(f'This is previous {previous_model_preds}')
     print(f'This is current {current_model_preds}')
     #Then
