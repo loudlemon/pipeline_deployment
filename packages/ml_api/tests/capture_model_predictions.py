@@ -19,7 +19,7 @@ def capture_predictions() -> None:
     predictions = make_prediction(input_data=test_data)
     array = predictions.get('predictions')[0]
     version = predictions.get('version')
-    new_dict['prediction'] = array
+    new_dict['predictions'] = array
     new_dict['version'] = version
     preds_df = pd.DataFrame([new_dict])
 
