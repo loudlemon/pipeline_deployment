@@ -18,7 +18,7 @@ def test_model_prediction_differential(
     # Given
     previous_model_df = pd.read_csv(f'{config.PACKAGE_ROOT}/{saved_file}')
     print(previous_model_df.head())
-    previous_model_preds = previous_model_df.predictions.values[0]
+    previous_model_preds = previous_model_df['predictions'].values[0][:,1]
     test_data = load_data(file_name=model_config.TEST_DATA)
 
     # When
