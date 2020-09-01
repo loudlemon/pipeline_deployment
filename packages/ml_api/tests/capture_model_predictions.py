@@ -21,7 +21,7 @@ def capture_predictions() -> None:
     version = predictions.get('version')
     new_dict['predictions'] = array
     new_dict['version'] = version
-    preds_df = pd.DataFrame(new_dict)
+    preds_df = pd.DataFrame([new_dict])
 
     #save the file into package repo
     preds_df.to_csv(

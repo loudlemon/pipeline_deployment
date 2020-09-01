@@ -28,7 +28,7 @@ def test_model_prediction_differential(
     #Then
     # diff the current model vs previous model
     assert len(previous_model_preds) == len(
-        current_model_preds)
+        current_model_preds.shape[1])
 
     # Perform the differential test
     for previous_value, current_value in zip(
