@@ -1,7 +1,7 @@
 import math
 import pytest
 import pandas as pd
-from log_reg.config import config
+from api import config
 from log_reg.predict import make_prediction
 from log_reg.processing.data_management import load_data
 
