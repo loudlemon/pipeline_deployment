@@ -101,15 +101,15 @@ workflows:
   version: 2
   test-all:
     jobs:
-      - test_ml_api
-      - test_chd_pipeline
+      #- test_ml_api
+      #- test_chd_pipeline
       - differential_tests
-      - train_and_upload_logistic_regression:
-          requires:
-            - test_chd_pipeline
-            - test_ml_api
-            - differential_tests
-          filters:
-            branches:
-              only:
-                - master
+      #- train_and_upload_logistic_regression:
+          #requires:
+           # - test_chd_pipeline
+           # - test_ml_api
+           # - differential_tests
+          #filters:
+           # branches:
+             # only:
+               # - master

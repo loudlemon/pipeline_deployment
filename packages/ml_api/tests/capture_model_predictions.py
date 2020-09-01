@@ -16,6 +16,7 @@ def capture_predictions() -> None:
     saved_file = 'test_predictions.csv'
     test_data = load_data(file_name='test_data.csv')
     predictions = make_prediction(input_data=test_data)
+    print(predictions)
     preds_df = pd.DataFrame([predictions])
 
     #save the file into package repo
