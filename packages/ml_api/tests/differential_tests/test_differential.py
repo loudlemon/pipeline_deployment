@@ -1,6 +1,7 @@
 import math
 import pytest
 import pandas as pd
+import ast
 from api import config
 from log_reg.config import config as model_config
 from log_reg.predict import make_prediction
@@ -18,7 +19,8 @@ def test_model_prediction_differential(
     # Given
     previous_model_df = pd.read_csv(f'{config.PACKAGE_ROOT}/{saved_file}')
     print(previous_model_df.head())
-    previous_model_preds = previous_model_df['predictions'].values[0][0]
+    previous_model_preds = previous_model_df['predictions'].values[0]
+    previous_model_preds = ast.literal_eval(previous_model_preds)
     test_data = load_data(file_name=model_config.TEST_DATA)
 
     # When
