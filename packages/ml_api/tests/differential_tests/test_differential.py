@@ -24,7 +24,8 @@ def test_model_prediction_differential(
     # When
     current = make_prediction(input_data=test_data)
     current_model_preds = current.get('predictions')[0]
-
+    print(f'This is previous {previous_model_preds}')
+    print(f'This is current {current_model_preds}')
     #Then
     # diff the current model vs previous model
     assert len(previous_model_preds) == len(
