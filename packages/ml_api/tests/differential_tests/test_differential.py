@@ -32,9 +32,13 @@ def test_model_prediction_differential(
     # Perform the differential test
     for previous_value, current_value in zip(
             previous_model_preds, current_model_preds):
+        try:
         # convert numpy float64 to Python float
-        previous_value = previous_value.item()
-        current_value = current_value.item()
+            previous_value = previous_value.item()
+            current_value = current_value.item()
+        except AttributeError:
+            print(previous_model_preds, current_model_preds)
+            
 
         # rel_tol is the relative tolerance - it is the maximum allowed
         # difference between a and b
