@@ -22,7 +22,7 @@ def test_model_prediction_differential(
 
     # When
     current = make_prediction(input_data=test_data)
-    current_model_preds = current.get('predictions')
+    current_model_preds = current.get('predictions')[:, 1]
 
     #Then
     # diff the current model vs previous model
