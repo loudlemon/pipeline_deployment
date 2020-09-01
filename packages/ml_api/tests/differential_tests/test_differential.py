@@ -5,7 +5,7 @@ from log_reg.config import config
 from log_reg.predict import make_prediction
 from log_reg.processing.data_management import load_data
 
-@pytest.mark.skip
+
 @pytest.mark.differential
 def test_model_prediction_differential(
                                 *,
@@ -17,7 +17,7 @@ def test_model_prediction_differential(
     # Given
     previous_model_df = pd.read_csv(f'{config.PACKAGE_ROOT}/{saved_file}')
     previous_model_preds = previous_model_df.predictions.values
-    test_data = load_data(file_name=f'{saved_file}')
+    test_data = load_data(file_name=config.TEST_DATA)
 
     # When
     current = make_prediction(input_data=test_data)
