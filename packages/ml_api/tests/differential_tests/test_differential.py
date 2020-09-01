@@ -2,7 +2,7 @@ import math
 import pytest
 import pandas as pd
 from api import config
-from log_reg import config as model_config
+from log_reg.config import config as model_config
 from log_reg.predict import make_prediction
 from log_reg.processing.data_management import load_data
 
@@ -38,6 +38,7 @@ def test_model_prediction_differential(
             current_value = current_value.item()
         except AttributeError:
             print(previous_model_preds)
+            print('*************')
             print(current_model_preds)
             
 
