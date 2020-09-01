@@ -37,11 +37,12 @@ def test_model_prediction_differential(
             previous_value = previous_value.item()
             current_value = current_value.item()
         except AttributeError:
-            print(previous_model_preds, current_model_preds)
+            print(previous_model_preds)
+            print(current_model_preds)
             
 
         # rel_tol is the relative tolerance - it is the maximum allowed
         # difference between a and b
         assert math.isclose(previous_value,
                             current_value,
-                            rel_tol=config.ACCEPTABLE_MODEL_DIFFERENCE)
+                            rel_tol=model_config.ACCEPTABLE_MODEL_DIFFERENCE)
