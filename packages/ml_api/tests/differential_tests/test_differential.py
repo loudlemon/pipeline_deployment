@@ -18,12 +18,12 @@ def test_model_prediction_differential(
     # Given
     previous_model_df = pd.read_csv(f'{config.PACKAGE_ROOT}/{saved_file}')
     print(previous_model_df.head())
-    previous_model_preds = previous_model_df['predictions'].values[0][:,1]
+    previous_model_preds = previous_model_df['predictions'].values[0][0]
     test_data = load_data(file_name=model_config.TEST_DATA)
 
     # When
     current = make_prediction(input_data=test_data)
-    current_model_preds = current.get('predictions')[:, 1]
+    current_model_preds = current.get('predictions')[0]
 
     #Then
     # diff the current model vs previous model
@@ -33,14 +33,9 @@ def test_model_prediction_differential(
     # Perform the differential test
     for previous_value, current_value in zip(
             previous_model_preds, current_model_preds):
-        try:
         # convert numpy float64 to Python float
-            previous_value = previous_value.item()
-            current_value = current_value.item()
-        except AttributeError:
-            print(previous_model_preds)
-            print('*************')
-            print(current_model_preds)
+        previous_value = previous_value[1].item()
+        current_value = current_value[1].item()
             
 
         # rel_tol is the relative tolerance - it is the maximum allowed
