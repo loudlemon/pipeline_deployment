@@ -17,7 +17,7 @@ def test_model_prediction_differential(
     """
     # Given
     previous_model_df = pd.read_csv(f'{config.PACKAGE_ROOT}/{saved_file}')
-    previous_model_preds = previous_model_df['predictions']
+    previous_model_preds = previous_model_df['predictions'].values
     test_data = load_data(file_name=model_config.TEST_DATA)
 
     # When
@@ -27,8 +27,7 @@ def test_model_prediction_differential(
     print(f'This is current {current_model_preds}')
     #Then
     # diff the current model vs previous model
-    assert len(previous_model_preds) == len(
-        current_model_preds.shape[1])
+    assert len(previous_model_preds) == len(current_model_preds)
 
     # Perform the differential test
     for previous_value, current_value in zip(
