@@ -7,5 +7,5 @@ flask==1.1.2
 marshmallow==3.7.1
 
 # set this to the previous model version
-log_reg==0.1.0
+log_reg==1.0.0
 
