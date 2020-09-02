@@ -23,8 +23,7 @@ def test_model_prediction_differential(
     # When
     current = make_prediction(input_data=test_data)
     current_model_preds = current.get('predictions')[0]
-    print(f'This is previous {previous_model_preds}')
-    print(f'This is current {current_model_preds}')
+
     #Then
     # diff the current model vs previous model
     assert len(previous_model_preds) == len(current_model_preds)
@@ -33,8 +32,8 @@ def test_model_prediction_differential(
     for previous_value, current_value in zip(
             previous_model_preds, current_model_preds):
         # convert numpy float64 to Python float
-        previous_value = previous_value[1].item()
-        current_value = current_value[1].item()
+        previous_value = previous_value.item()
+        current_value = current_value.item()
             
 
         # rel_tol is the relative tolerance - it is the maximum allowed
