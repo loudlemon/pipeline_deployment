@@ -9,3 +9,6 @@ marshmallow==3.7.1
 # Install from gemfury
 log_reg==1.0.0
 
+# deployment
+gunicorn==20.0.0
+
