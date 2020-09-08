@@ -27,7 +27,7 @@ def version():
 @prediction_app.route('/v1/predict/log_reg', methods=['POST'])
 def predict():
     if request.method == 'POST':
-        #Extract POST data from requset body as JSON
+        #Extract POST data from request body as JSON
         json_data = request.get_json()
         _logger.debug(f'Inputs: {json_data}')
         #Validate input using marshmallow schema
