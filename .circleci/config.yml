@@ -141,20 +141,20 @@ workflows:
             branches:
               only:
                 - master
-       - heroku_deployment:
+      - heroku_deployment:
            requires:
              - train_and_upload_logistic_regression
            filters:
              branches:
                only:
                  - master
-     - deploy_to_heroku_with_docker:
-         requires:
-           - train_and_upload_logistic_regression
-         filters:
-           branches:
-             only:
-               - master
+      - deploy_to_heroku_with_docker:
+          requires:
+            - train_and_upload_logistic_regression
+          filters:
+            branches:
+              only:
+                - master
                 
                 
                 
