@@ -57,26 +57,26 @@ jobs:
             - "/venv"
 
   train_and_upload_logistic_regression:
-      <<: *defaults
-      steps:
-        - checkout
-        - *prepare_venv
-        - run:
-             name: Install requirements
-             command: |
-               . venv/bin/activate
-               pip install -r packages/log_reg/requirements.txt
-        - run:
-             name: Train model
-             command: |
-                . venv/bin/activate
-                PYTHONPATH=./packages/log_reg python3 packages/log_reg/log_reg/train_pipeline.py
-        - run:
-            name: Publish model to Gemfury
-            command: |
-              . venv/bin/activate
-              chmod +x ./scripts/publish_model.sh
-              ./scripts/publish_model.sh ./packages/log_reg/
+    <<: *defaults
+    steps:
+      - checkout
+      - *prepare_venv
+      - run:
+          name: Install requirements
+          command: |
+            . venv/bin/activate
+            pip install -r packages/log_reg/requirements.txt
+      - run:
+          name: Train model
+          command: |
+            . venv/bin/activate
+            PYTHONPATH=./packages/log_reg python3 packages/log_reg/log_reg/train_pipeline.py
+      - run:
+          name: Publish model to Gemfury
+          command: |
+            . venv/bin/activate
+            chmod +x ./scripts/publish_model.sh
+            ./scripts/publish_model.sh ./packages/log_reg/
 
   differential_tests:
     <<: *defaults
@@ -142,12 +142,12 @@ workflows:
               only:
                 - master
       - heroku_deployment:
-           requires:
-             - train_and_upload_logistic_regression
-           filters:
-             branches:
-               only:
-                 - master
+          requires:
+            - train_and_upload_logistic_regression
+          filters:
+            branches:
+              only:
+                - master
       - deploy_to_heroku_with_docker:
           requires:
             - train_and_upload_logistic_regression
