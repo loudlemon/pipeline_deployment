@@ -57,26 +57,26 @@ jobs:
             - "/venv"
 
   train_and_upload_logistic_regression:
-      <<: *defaults
-      steps:
-        - checkout
-        - *prepare_venv
-        - run:
-             name: Install requirements
-             command: |
-               . venv/bin/activate
-               pip install -r packages/log_reg/requirements.txt
-        - run:
-             name: Train model
-             command: |
-                . venv/bin/activate
-                PYTHONPATH=./packages/log_reg python3 packages/log_reg/log_reg/train_pipeline.py
-        - run:
-            name: Publish model to Gemfury
-            command: |
-              . venv/bin/activate
-              chmod +x ./scripts/publish_model.sh
-              ./scripts/publish_model.sh ./packages/log_reg/
+    <<: *defaults
+    steps:
+      - checkout
+      - *prepare_venv
+      - run:
+          name: Install requirements
+          command: |
+            . venv/bin/activate
+            pip install -r packages/log_reg/requirements.txt
+      - run:
+          name: Train model
+          command: |
+            . venv/bin/activate
+            PYTHONPATH=./packages/log_reg python3 packages/log_reg/log_reg/train_pipeline.py
+      - run:
+          name: Publish model to Gemfury
+          command: |
+            . venv/bin/activate
+            chmod +x ./scripts/publish_model.sh
+            ./scripts/publish_model.sh ./packages/log_reg/
 
   differential_tests:
     <<: *defaults
@@ -104,7 +104,26 @@ jobs:
           name: Deploy to Heroku
           command: |
             git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
-
+            
+  deploy_to_heroku_with_docker:
+    <<: *defaults
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_cashing: true
+      - run: docker login --username=$HEROKU_EMAIL --password=$HEROKU_API_KEY registry.heroku.com
+      - run:
+          name: Setup Heroku CLI
+          command: |
+            wget -qo- https://cli-assets.heroku.com/install-ubuntu.sh | sh
+      - run:
+          name: Build and Push image
+          command: |
+            make build-ml-api-heroku push-ml-api-heroku
+      - run:
+          name: Release to Heroku
+          command: |
+            heroku container:release web --app $HEROKU_APP_NAME
 
 workflows:
   version: 2
@@ -129,3 +148,14 @@ workflows:
             branches:
               only:
                 - master
+      - deploy_to_heroku_with_docker:
+          requires:
+            - train_and_upload_logistic_regression
+          filters:
+            branches:
+              only:
+                - master
+                
+                
+                
+                
