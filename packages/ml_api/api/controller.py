@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, render_template
 from api.config import get_logger
 from api import __version__ as api_version
 from api.validation import validate_inputs
@@ -43,3 +43,21 @@ def predict():
         return jsonify({'predictions': predictions,
                         'version': version,
                         'errors': errors})
+    
+@prediction_app.route('/')
+def home():
+    return render_template('home.html')
+    
+@prediction_app.route('/prediction', methods=['POST'])
+def prediction():
+     if request.method == 'POST':
+        json_data = request.form.to_dict()
+        _logger.debug(f'Inputs: {json_data}')
+        input_data, errors =  validate_inputs(input_data=json_data)
+        result = make_prediction(input_data=input_data)
+        _logger.debug(f'Outputs: {result}')
+        predictions = result.get('predictions').tolist()
+        return render_template('home.html',pred='Expected Bill will be {}'.format(predictions))
+
+
+

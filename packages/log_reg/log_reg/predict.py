@@ -24,7 +24,7 @@ def make_prediction(*, input_data: t.Union[pd.DataFrame, dict],
     """
     data = pd.DataFrame(input_data)
     validated_data = validate_inputs(input_data=data)
-    prediction = _chd_pipe.predict_proba(data[config.FEATURES])
+    prediction = _chd_pipe.predict_proba(validated_data[config.FEATURES])
     response = {'predictions': prediction, 'version': _version}
 
     _logger.info(
