@@ -18,7 +18,7 @@ def make_prediction(*, input_data: t.Union[pd.DataFrame, dict],
     """
     Make prediction using saved model pipeline.
     Args:
-        input_data: Array pf model predictions inputs.
+        input_data: Array of model predictions inputs.
     Returns:
         predictions for each iput row, as well as the model version
     """

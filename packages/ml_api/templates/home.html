@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Predict Insurance Bill</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='./style.css') }}">
+  
+</head>
+
+<body>
+ <div class="login">
+	<h3>Вероятность ишемической болезни сердца в ближайшие 5 лет</h3>
+
+     <!-- Form to enter new data for predictions  -->
+    <form action="{{ url_for('prediction_app.prediction')}}"method="POST">
+      <input list="gender" type="text" name="male" placeholder="Ваш пол" required="required" /><br>
+      <datalist id="gender">
+          <option value="Мужчина">
+          <option value="Женщина">
+      </datalist>
+    	<input type="number" min="1" max= "125" name="age" placeholder="Ваш возраст" required="required" /><br>
+        <input list="smoker" type="text" name="currentsmoker" placeholder="Вы курите?" required="required" /><br>
+        <datalist id="smoker">
+          <option value="Да">
+          <option value="Нет">
+      </datalist>
+        <input type="number" min="0" max= "50" name="cigsperday" placeholder="Количество выкуренных сигарет в день" required="required" /><br>
+        <input list="hyp" type="text" name="prevalenthyp" placeholder="Страдаете ли вы гипертонией?" required="required" /><br>
+        <datalist id="hyp">
+          <option value="Да">
+          <option value="Нет">
+        </datalist>
+        <input list="dia" type="text" name="diabetes" placeholder="Есть ли у вас диабет?" required="required" /><br>
+        <datalist id="dia">
+          <option value="Да">
+          <option value="Нет">
+        </datalist>
+        <input type="number" min="70" max="200" name="sysbp" placeholder="Артериальное давление (систолическое)" required="required" /><br>
+        <input type="number" min="50" max="130" name="diabp" placeholder="Артериальное давление (диастолическое)" required="required" /><br>
+        <input type="number" min="40" max="130" name="heartrate" placeholder="Частота сердцебиения (ударов/мин)" required="required" /><br>
+        <input type="number" min="13" max="55" name="bmi" placeholder="Индекс массы тела" required="required" /><br>
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Получить результат</button>
+    </form>
+
+   <br>
+   <br>
+  
+   
+ </div>
+ {{pred}}
+
+</body>
+</html>

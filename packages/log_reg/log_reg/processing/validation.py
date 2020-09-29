@@ -7,7 +7,6 @@ def validate_inputs(input_data: pd.DataFrame) -> pd.DataFrame:
     Check model inputs for unprocessable values
     """
     val_data = input_data.copy()
-
     # check for features with NA before training
     if input_data[config.FEATURES].isnull().any().any():
         val_data.dropna(inplace=True)

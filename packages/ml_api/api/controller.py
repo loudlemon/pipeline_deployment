@@ -51,13 +51,15 @@ def home():
 @prediction_app.route('/prediction', methods=['POST'])
 def prediction():
      if request.method == 'POST':
-        json_data = request.form.to_dict()
-        _logger.debug(f'Inputs: {json_data}')
-        input_data, errors =  validate_inputs(input_data=json_data)
+        data = request.form.to_dict(flat=False)
+        _logger.debug(f'Inputs: {data}')
+        input_data, errors =  validate_inputs(input_data=data)
         result = make_prediction(input_data=input_data)
         _logger.debug(f'Outputs: {result}')
         predictions = result.get('predictions').tolist()
-        return render_template('home.html',pred='Expected Bill will be {}'.format(predictions))
+        return render_template('home.html',
+                               pred='Вероятность ишемической болезни сердца {}%'\
+                               .format(round(predictions[0][1]*100)))
 
 
 
