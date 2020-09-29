@@ -16,6 +16,6 @@ class DropUnnecessaryFeatures(BaseEstimator, TransformerMixin):
 
     def transform(self, X):
         X = X.copy()
-        X = X.drop(self.variables, axis=1)
+        X = X.drop(self.variables, axis=1, errors='ignore')
 
         return X

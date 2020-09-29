@@ -27,6 +27,7 @@ FEATURES = [
     'sysbp', 'diabp', 'bmi', 'heartrate', 'glucose'
 ]
 
+FEATURES_NUMBER = len(FEATURES)
 # for now, keep only these features
 FEATURES_TO_KEEP = [
     'male', 'age', 'currentsmoker', 'cigsperday', 'prevalenthyp',
