@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Predict Insurance Bill</title>
+  <title>Здоровье сердца</title>
   <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
@@ -11,10 +11,16 @@
 <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='./style.css') }}">
   
 </head>
+    
 
+<div id="videoAMB">
+        <video id="Video" autoplay muted loop>
+          <source src="{{ url_for('static', filename='patience.mp4') }}" type="video/mp4">
+        </video>
+</div>
 <body>
  <div class="login">
-	<h3>Вероятность ишемической болезни сердца в ближайшие 5 лет</h3>
+	<h4>Вероятность ишемической болезни сердца в ближайшие 5 лет</h4>
 
      <!-- Form to enter new data for predictions  -->
     <form action="{{ url_for('prediction_app.prediction')}}"method="POST">
