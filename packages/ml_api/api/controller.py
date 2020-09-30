@@ -59,7 +59,7 @@ def prediction():
         predictions = result.get('predictions').tolist()
         return render_template('home.html',
                                pred='Вероятность ишемической болезни сердца {}%'\
-                               .format(round(predictions[0][1]*100)))
+                               .format(round(predictions[0][1]*100, 1)))
 
 
 
