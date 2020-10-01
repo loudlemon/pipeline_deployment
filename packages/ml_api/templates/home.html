@@ -11,14 +11,30 @@
 <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='./style.css') }}">
   
 </head>
-    
+
+<style>
+::placeholder {
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+ color: white;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+ color: white;
+}
+</style>
 
 <div id="videoAMB">
         <video id="Video" autoplay muted loop>
-          <source src="{{ url_for('static', filename='patience.mp4') }}" type="video/mp4">
+          <source src="{{ url_for('static', filename='nature1.mp4') }}" type="video/mp4">
         </video>
 </div>
+
 <body>
+        
  <div class="login">
 	<h4>Вероятность ишемической болезни сердца в ближайшие 5 лет</h4>
 
@@ -35,7 +51,7 @@
           <option value="Да">
           <option value="Нет">
       </datalist>
-        <input type="number" min="0" max= "50" name="cigsperday" placeholder="Количество выкуренных сигарет в день" required="required" /><br>
+        <input type="number" min="0" max= "50" name="cigsperday" placeholder="Сколько сигарет в день (0 если не курите)" required="required" /><br>
         <input list="hyp" type="text" name="prevalenthyp" placeholder="Страдаете ли вы гипертонией?" required="required" /><br>
         <datalist id="hyp">
           <option value="Да">
@@ -59,7 +75,7 @@
   
    
  </div>
- {{pred}}
+ 
 
 </body>
 </html>

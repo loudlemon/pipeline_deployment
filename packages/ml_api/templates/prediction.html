@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Здоровье сердца</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='./style.css') }}">
+  
+</head>
+
+
+<div class="maintext">
+  <h2 class="text-light bg-dark"> Ваш результат: </h2>
+  <h4 class="text-light bg-dark"> {{pred}} </h4>
+<a href="{{ url_for('prediction_app.home') }}"><button class="btn btn-primary  btn-large">Попробовать еще раз?</button></a>
+
+
+<div id="videoAMB">
+        <video id="Video" autoplay muted loop>
+          <source src="{{ url_for('static', filename='nature1.mp4') }}" type="video/mp4">
+        </video>
+</div>
+
+<body>
+
+ </div>
+ 
+ 
+ 
+
+</body>
+</html>
