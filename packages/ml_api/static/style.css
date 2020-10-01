@@ -13,6 +13,8 @@
 
 html { width: 100%; height:100%; overflow:hidden; }
 
+
+
 video#Video {
 	right: 0;
 	bottom: 0;
@@ -35,6 +37,9 @@ body {
 	font-size: 18px;
 	text-align:center;
 	letter-spacing:1.2px;
+	animation: fadeInAnimation ease 3s; 
+	animation-iteration-count: 1; 
+	animation-fill-mode: forwards; 
 }
 
 .login { 
@@ -46,19 +51,30 @@ body {
 	height:500px;
 }
 
-.login h4 { color: rgba(0,0,0,0.9); text-shadow: 0 0 10px rgba(0,0,0,0.3); letter-spacing:1px; text-align:center; }
+.maintext{
+	position:absolute;
+	margin:auto;
+	width:700px;
+	height:300px;
+	text-align:center;
+	top:0; bottom: 0;
+	left: 0;
+	right: 0;}
+
+.login h4 { color: rgb(0,0,0); text-shadow: 0 0 1px rgba(0,0,0,0.1); letter-spacing:1px; text-align:center; font-weight:800; }
+.maintext h3 { color: #F0FFF0; text-shadow: 0 0 1px rgba(0,0,0,0.1); }
 
 input { 
 	width: 90%; 
 	margin-bottom: 8px; 
-	background: rgba(0,0,0,0.6);
+	background: rgba(0,0,0,0.3);
 	border: none;
 	outline: none;
 	padding: 8px;
 	font-size: 13px;
-	color: white;
+	color: #fff;
 	text-shadow: 1px 1px 1px black;
-	border: 3px solid rgba(0,0,0,0.3);
+	border: 2px solid rgba(0,0,0,0.3);
 	border-radius: 10px;
 	box-shadow: inset 0 -5px 45px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
 	-webkit-transition: box-shadow .5s ease;
