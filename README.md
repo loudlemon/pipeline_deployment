@@ -20,7 +20,6 @@
 <img align="left" width="110px" height="70px" src="images/sklearn.png" />
 <img align="left" width="80px" src="images/docker.png" />
 <img align="left" width="100px" src="images/cirlceci.png" />
-<img align="left" width="85px" src="images/bash.png" />
 <img align="left" width="120px" src="images/heroku.png" />
 <img align="left" width="120px" height = "45px" src="images/gemfury.png" />
 
