@@ -21,6 +21,8 @@
 <img align="left" width="80px" src="images/docker.png" />
 <img align="left" width="100px" src="images/cirlceci.png" />
 <img align="left" width="120px" src="images/heroku.png" />
-<img align="left" width="120px" src="images/bash.png" />
+<img align="left" width="100px" src="images/bash.png" />
+<br />
+<br />
 
 
