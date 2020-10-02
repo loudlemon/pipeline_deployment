@@ -10,7 +10,7 @@
 ---
  - Позволяет определить апостериорную вероятность ишемической болезни сердца
  - Алгоритм - логистическая регрессия
- - [Обучен на открытых данных WorldHealthOrganization](https://www.who.int/en/news-room/fact-sheets/detail/cardiovascular-diseases-(cvds))
+ - [Обучен на открытых данных Framingham Heart study dataset](https://www.kaggle.com/amanajmera1/framingham-heart-study-dataset)
 
 ### Языки и технологии:
 ---
@@ -21,6 +21,6 @@
 <img align="left" width="80px" src="images/docker.png" />
 <img align="left" width="100px" src="images/cirlceci.png" />
 <img align="left" width="120px" src="images/heroku.png" />
-<img align="left" width="120px" height = "45px" src="images/gemfury.png" />
+<img align="left" width="120px" src="images/bash.png" />
 
 
