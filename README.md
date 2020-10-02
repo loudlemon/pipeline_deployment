@@ -10,17 +10,18 @@
 ---
  - Позволяет определить апостериорную вероятность ишемической болезни сердца
  - Алгоритм - логистическая регрессия
- - [Обучен на открытых данных UC Irvine](https://archive.ics.uci.edu/ml/datasets/heart+disease)
+ - [Обучен на открытых данных WorldHealthOrganization](https://www.who.int/en/news-room/fact-sheets/detail/cardiovascular-diseases-(cvds))
 
-Языки и технологии:
-<img align="left" width="26px" src="images/python.png" />
-<img align="left" width="26px" src="images/html.png" />
-<img align="left" width="26px" src="images/css.png" />
-<img align="left" width="26px" src="images/sklearn.png" />
-<img align="left" width="26px" src="images/docker.png" />
-<img align="left" width="26px" src="images/circleci.png" />
-<img align="left" width="26px" src="images/bash.png" />
-<img align="left" width="26px" src="images/heroku.png" />
-<img align="left" width="26px" src="images/genfury.png" />
+### Языки и технологии:
+---
+<img align="left" width="50px" src="images/python.png" />
+<img align="left" width="50px" src="images/html.png" />
+<img align="left" width="50px" src="images/css.png" />
+<img align="left" width="110px" height="70px" src="images/sklearn.png" />
+<img align="left" width="80px" src="images/docker.png" />
+<img align="left" width="100px" src="images/cirlceci.png" />
+<img align="left" width="85px" src="images/bash.png" />
+<img align="left" width="120px" src="images/heroku.png" />
+<img align="left" width="120px" height = "45px" src="images/gemfury.png" />
 
 
